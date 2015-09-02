@@ -124,6 +124,8 @@ typedef GLuint         (GL_APIENTRYP PFNGLGETDEBUGMESSAGELOGPROC) (GLuint count,
 typedef GLenum         (GL_APIENTRYP PFNGLGETERRORPROC) (void);
 typedef void           (GL_APIENTRYP PFNGLGETFLOATVPROC) (GLenum pname, GLfloat *data);
 typedef void           (GL_APIENTRYP PFNGLGETINTEGERVPROC) (GLenum pname, GLint *data);
+typedef void           (GL_APIENTRYP PFNGLGETINTERNALFORMATIVPROC) (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint *params);
+typedef void           (GL_APIENTRYP PFNGLGETINTERNALFORMATI64VPROC) (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 *params);
 typedef void           (GL_APIENTRYP PFNGLGETOBJECTLABELPROC) (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label);
 typedef void           (GL_APIENTRYP PFNGLGETOBJECTPTRLABELPROC) (const void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label);
 typedef void           (GL_APIENTRYP PFNGLGETPOINTERVPROC) (GLenum pname, void **params);
@@ -299,6 +301,8 @@ GL_IMPORT______(true,  PFNGLGETDEBUGMESSAGELOGPROC,                glGetDebugMes
 GL_IMPORT______(false, PFNGLGETERRORPROC,                          glGetError);
 GL_IMPORT______(false, PFNGLGETFLOATVPROC,                         glGetFloatv);
 GL_IMPORT______(false, PFNGLGETINTEGERVPROC,                       glGetIntegerv);
+GL_IMPORT______(true,  PFNGLGETINTERNALFORMATIVPROC,               glGetInternalformativ);
+GL_IMPORT______(true,  PFNGLGETINTERNALFORMATI64VPROC,             glGetInternalformati64v);
 GL_IMPORT______(true,  PFNGLGETOBJECTLABELPROC,                    glGetObjectLabel);
 GL_IMPORT______(true,  PFNGLGETOBJECTPTRLABELPROC,                 glGetObjectPtrLabel);
 GL_IMPORT______(true,  PFNGLGETPOINTERVPROC,                       glGetPointerv);
@@ -320,7 +324,9 @@ GL_IMPORT______(false, PFNGLGETSHADERIVPROC,                       glGetShaderiv
 GL_IMPORT______(false, PFNGLGETSHADERINFOLOGPROC,                  glGetShaderInfoLog);
 GL_IMPORT______(false, PFNGLGETSTRINGPROC,                         glGetString);
 GL_IMPORT______(false, PFNGLGETUNIFORMLOCATIONPROC,                glGetUniformLocation);
+#if BGFX_CONFIG_RENDERER_OPENGL || !(BGFX_CONFIG_RENDERER_OPENGLES < 30)
 GL_IMPORT______(true,  PFNGLINVALIDATEFRAMEBUFFERPROC,             glInvalidateFramebuffer);
+#endif // !(BGFX_CONFIG_RENDERER_OPENGLES < 30)
 GL_IMPORT______(false, PFNGLLINKPROGRAMPROC,                       glLinkProgram);
 GL_IMPORT______(true,  PFNGLMEMORYBARRIERPROC,                     glMemoryBarrier);
 GL_IMPORT______(true,  PFNGLMULTIDRAWARRAYSINDIRECTPROC,           glMultiDrawArraysIndirect);
@@ -503,6 +509,7 @@ GL_IMPORT_NV___(true,  PFNGLGENQUERIESPROC,                        glGenQueries)
 GL_IMPORT_NV___(true,  PFNGLDELETEQUERIESPROC,                     glDeleteQueries);
 GL_IMPORT_NV___(true,  PFNGLBEGINQUERYPROC,                        glBeginQuery);
 GL_IMPORT_NV___(true,  PFNGLENDQUERYPROC,                          glEndQuery);
+GL_IMPORT_NV___(true,  PFNGLGETQUERYOBJECTIVPROC,                  glGetQueryObjectiv);
 GL_IMPORT_NV___(true,  PFNGLGETQUERYOBJECTUI64VPROC,               glGetQueryObjectui64v);
 
 GL_IMPORT      (true,  PFNGLINVALIDATEFRAMEBUFFERPROC,             glInvalidateFramebuffer, glDiscardFramebufferEXT);
@@ -565,6 +572,7 @@ GL_IMPORT______(true,  PFNGLGENQUERIESPROC,                        glGenQueries)
 GL_IMPORT______(true,  PFNGLDELETEQUERIESPROC,                     glDeleteQueries);
 GL_IMPORT______(true,  PFNGLBEGINQUERYPROC,                        glBeginQuery);
 GL_IMPORT______(true,  PFNGLENDQUERYPROC,                          glEndQuery);
+GL_IMPORT______(true,  PFNGLGETQUERYOBJECTIVPROC,                  glGetQueryObjectiv);
 GL_IMPORT______(true,  PFNGLGETQUERYOBJECTUI64VPROC,               glGetQueryObjectui64v);
 
 GL_IMPORT______(true,  PFNGLDRAWARRAYSINDIRECTPROC,                glDrawArraysIndirect);
